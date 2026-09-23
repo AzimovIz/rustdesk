@@ -830,5 +830,17 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("drm-capture-tip", ""),
         ("wayland-drm-tip", ""),
         ("login-wayland-drm-tip", ""),
+        ("Enable USB forwarding", ""),
+        ("USB forwarding", ""),
+        ("Loading...", ""),
+        ("No USB devices", ""),
+        ("Share", ""),
+        ("Unshare", ""),
+        ("Attach", ""),
+        ("Detach", ""),
+        ("My local devices", ""),
+        ("Peer's devices", ""),
+        ("Push", ""),
+        ("Unpush", ""),
     ].iter().cloned().collect();
 }

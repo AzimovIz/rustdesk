@@ -830,5 +830,17 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("drm-capture-tip", "Neemt het scherm via de RustDesk-service rechtstreeks van de grafische kaart op, zonder de Wayland-vraag om het scherm te delen, ook op het aanmeldingsscherm. Werkt mogelijk niet op elk apparaat; als verbindingen nog steeds vragen om het scherm te delen, schakel dit dan uit of gebruik X11. Wijzigen verbreekt de huidige sessies."),
         ("wayland-drm-tip", "Probeer voor onbeheerde toegang onder Wayland DRM-schermopname, of gebruik X11 als dat niet werkt."),
         ("login-wayland-drm-tip", "Probeer voor het Wayland-aanmeldingsscherm DRM-schermopname of zet het om naar X11."),
+        ("Enable USB forwarding", "USB-doorsturen inschakelen"),
+        ("USB forwarding", "USB-doorsturen"),
+        ("Loading...", "Laden..."),
+        ("No USB devices", "Geen USB-apparaten"),
+        ("Share", "Delen"),
+        ("Unshare", "Delen opheffen"),
+        ("Attach", "Koppelen"),
+        ("Detach", "Loskoppelen"),
+        ("My local devices", ""),
+        ("Peer's devices", ""),
+        ("Push", ""),
+        ("Unpush", ""),
     ].iter().cloned().collect();
 }

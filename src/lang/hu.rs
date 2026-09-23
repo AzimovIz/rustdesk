@@ -830,5 +830,17 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("drm-capture-tip", "A RustDesk szolgáltatáson keresztül közvetlenül a videokártyáról rögzíti a képernyőt, a Wayland képernyőmegosztási kérése nélkül, a bejelentkezési képernyőn is. Nem biztos, hogy minden eszközön működik; ha a kapcsolatok továbbra is képernyőmegosztást kérnek, kapcsolja ki ezt, vagy használja az X11-et. A módosítás bontja az aktuális munkameneteket."),
         ("wayland-drm-tip", "Felügyelet nélküli hozzáféréshez Waylanden próbálja ki a DRM-képernyőrögzítést, vagy használja az X11-et."),
         ("login-wayland-drm-tip", "A Wayland bejelentkezési képernyőjéhez próbálja ki a DRM-képernyőrögzítést, vagy váltson X11-re."),
+        ("Enable USB forwarding", "USB-továbbítás engedélyezése"),
+        ("USB forwarding", "USB-továbbítás"),
+        ("Loading...", "Betöltés..."),
+        ("No USB devices", "Nincs USB-eszköz"),
+        ("Share", "Megosztás"),
+        ("Unshare", "Megosztás megszüntetése"),
+        ("Attach", "Csatolás"),
+        ("Detach", "Leválasztás"),
+        ("My local devices", ""),
+        ("Peer's devices", ""),
+        ("Push", ""),
+        ("Unpush", ""),
     ].iter().cloned().collect();
 }

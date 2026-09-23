@@ -830,5 +830,17 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("drm-capture-tip", "يلتقط الشاشة مباشرة من بطاقة الرسومات عبر خدمة RustDesk، دون طلب مشاركة الشاشة في Wayland، بما في ذلك شاشة تسجيل الدخول. قد لا يعمل على كل الأجهزة؛ إذا استمرت الاتصالات في طلب مشاركة الشاشة، فأوقف هذا الخيار أو استخدم X11. تغيير هذا الخيار يقطع الجلسات الحالية."),
         ("wayland-drm-tip", "للوصول غير المراقب على Wayland، جرّب التقاط الشاشة عبر DRM، أو استخدم X11 إذا لم يعمل."),
         ("login-wayland-drm-tip", "للوصول إلى شاشة تسجيل الدخول في Wayland، جرّب التقاط الشاشة عبر DRM أو حوّلها إلى X11."),
+        ("Enable USB forwarding", "تمكين إعادة توجيه USB"),
+        ("USB forwarding", "إعادة توجيه USB"),
+        ("Loading...", "جارٍ التحميل..."),
+        ("No USB devices", "لا توجد أجهزة USB"),
+        ("Share", "مشاركة"),
+        ("Unshare", "إلغاء المشاركة"),
+        ("Attach", "إرفاق"),
+        ("Detach", "فصل"),
+        ("My local devices", ""),
+        ("Peer's devices", ""),
+        ("Push", ""),
+        ("Unpush", ""),
     ].iter().cloned().collect();
 }

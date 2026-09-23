@@ -830,5 +830,17 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("drm-capture-tip", "Snima ekran direktno sa grafičke kartice preko RustDesk servisa, bez Wayland upita za deljenje ekrana, uključujući ekran za prijavu. Možda neće raditi na svakom uređaju; ako veze i dalje traže deljenje ekrana, isključite ovo ili koristite X11. Promena prekida trenutne sesije."),
         ("wayland-drm-tip", "Za pristup bez nadzora na Waylandu probajte DRM snimanje ekrana ili koristite X11 ako ne radi."),
         ("login-wayland-drm-tip", "Za pristup Wayland ekranu za prijavu probajte DRM snimanje ekrana ili ga prebacite na X11."),
+        ("Enable USB forwarding", "Omogući USB prosleđivanje"),
+        ("USB forwarding", "USB prosleđivanje"),
+        ("Loading...", "Učitavanje..."),
+        ("No USB devices", "Nema USB uređaja"),
+        ("Share", "Deli"),
+        ("Unshare", "Prekini deljenje"),
+        ("Attach", "Priključi"),
+        ("Detach", "Otkači"),
+        ("My local devices", ""),
+        ("Peer's devices", ""),
+        ("Push", ""),
+        ("Unpush", ""),
     ].iter().cloned().collect();
 }

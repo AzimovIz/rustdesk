@@ -830,5 +830,17 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("drm-capture-tip", "Tver ekrānu tieši no videokartes, izmantojot RustDesk pakalpojumu, bez Wayland ekrāna kopīgošanas pieprasījuma, arī pieteikšanās ekrānā. Var nedarboties visās ierīcēs; ja savienojumi joprojām pieprasa kopīgot ekrānu, izslēdziet šo vai izmantojiet X11. Mainot šo iestatījumu, pašreizējās sesijas tiek atvienotas."),
         ("wayland-drm-tip", "Neuzraudzītai piekļuvei Wayland vidē izmēģiniet DRM ekrāna tveršanu vai izmantojiet X11, ja tā nedarbojas."),
         ("login-wayland-drm-tip", "Lai piekļūtu Wayland pieteikšanās ekrānam, izmēģiniet DRM ekrāna tveršanu vai pārslēdziet to uz X11."),
+        ("Enable USB forwarding", "Iespējot USB pāradresāciju"),
+        ("USB forwarding", "USB pāradresācija"),
+        ("Loading...", "Ielādē..."),
+        ("No USB devices", "Nav USB ierīču"),
+        ("Share", "Kopīgot"),
+        ("Unshare", "Pārtraukt kopīgošanu"),
+        ("Attach", "Pievienot"),
+        ("Detach", "Atvienot"),
+        ("My local devices", ""),
+        ("Peer's devices", ""),
+        ("Push", ""),
+        ("Unpush", ""),
     ].iter().cloned().collect();
 }

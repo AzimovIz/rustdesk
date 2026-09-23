@@ -830,5 +830,17 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("drm-capture-tip", "通过 RustDesk 服务直接从显卡捕获屏幕，不再弹出 Wayland 的屏幕共享确认，登录界面也可以使用。并非所有设备都支持；如果连接时仍然要求确认屏幕共享，请关闭此选项或改用 X11。更改此选项会断开当前会话。"),
         ("wayland-drm-tip", "如需在 Wayland 上无人值守访问，请尝试 DRM 捕获屏幕；如果不起作用，请使用 X11。"),
         ("login-wayland-drm-tip", "如需访问 Wayland 登录界面，请尝试 DRM 捕获屏幕，或将其切换到 X11。"),
+        ("Enable USB forwarding", "启用 USB 转发"),
+        ("USB forwarding", "USB 转发"),
+        ("Loading...", "加载中..."),
+        ("No USB devices", "没有 USB 设备"),
+        ("Share", "共享"),
+        ("Unshare", "取消共享"),
+        ("Attach", "挂载"),
+        ("Detach", "卸载"),
+        ("My local devices", ""),
+        ("Peer's devices", ""),
+        ("Push", ""),
+        ("Unpush", ""),
     ].iter().cloned().collect();
 }
