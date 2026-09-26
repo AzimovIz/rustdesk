@@ -2501,7 +2501,7 @@ impl Connection {
             return;
         };
         usbip.handle(ch, || {
-            Self::permission(keys::OPTION_ENABLE_USBIP, &self.control_permissions)
+            Self::permission(keys::OPTION_ALLOW_USBIP, &self.control_permissions)
         });
     }
 
@@ -2823,6 +2823,7 @@ impl Connection {
                 keys::OPTION_ENABLE_RECORD_SESSION => Some(Permission::recording),
                 keys::OPTION_ENABLE_BLOCK_INPUT => Some(Permission::block_input),
                 keys::OPTION_ENABLE_PRIVACY_MODE => Some(Permission::privacy_mode),
+                keys::OPTION_ALLOW_USBIP => Some(Permission::usb),
                 _ => None,
             };
             if let Some(permission) = permission {
@@ -3083,7 +3084,7 @@ impl Connection {
                     }
                     #[cfg(target_os = "linux")]
                     {
-                        if !Self::permission(keys::OPTION_ENABLE_USBIP, &self.control_permissions)
+                        if !Self::permission(keys::OPTION_ALLOW_USBIP, &self.control_permissions)
                         {
                             self.send_login_error("No permission of USB forwarding").await;
                             sleep(1.).await;
