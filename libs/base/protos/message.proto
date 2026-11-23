@@ -1013,6 +1013,8 @@ message UsbDevice {
   bool shared = 4;
   // Controller side only: local vhci port if attached, -1 otherwise.
   int32 attached_port = 5;
+  // Manufacturer and product as the device reports them, empty if unknown.
+  string name = 6;
 }
 
 message UsbDeviceList {

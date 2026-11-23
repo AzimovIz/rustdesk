@@ -296,6 +296,40 @@ pub fn parse_import_request_busid(prefix: &[u8]) -> Option<String> {
     std::str::from_utf8(&busid[..end]).ok().map(str::to_string)
 }
 
+/// The names the device reports in its string descriptors, or `fallback`
+/// when it reports none. `bus_id` must come from `usbip list` output.
+pub fn device_name(bus_id: &str, fallback: String) -> String {
+    let dir = std::path::Path::new("/sys/bus/usb/devices").join(bus_id);
+    let read = |file: &str| std::fs::read_to_string(dir.join(file)).unwrap_or_default();
+    let name = join_device_name(&read("manufacturer"), &read("product"));
+    if name.is_empty() {
+        fallback
+    } else {
+        name
+    }
+}
+
+/// `usbip list -p` prints "unknown vendor"/"unknown product" for ids missing
+/// from `usb.ids`; those say nothing the ids do not.
+pub fn join_device_name(vendor: &str, product: &str) -> String {
+    let known = |s: &str| {
+        let s = s.trim();
+        if s.starts_with("unknown ") {
+            String::new()
+        } else {
+            s.to_string()
+        }
+    };
+    let (vendor, product) = (known(vendor), known(product));
+    if vendor.is_empty() || product.to_lowercase().starts_with(&vendor.to_lowercase()) {
+        product
+    } else if product.is_empty() {
+        vendor
+    } else {
+        format!("{} {}", vendor, product)
+    }
+}
+
 pub fn window_update_msg(channel_id: i32, add: u32) -> Message {
     let mut ch = UsbChannel::new();
     ch.set_window_update(UsbForwardWindowUpdate {
@@ -311,6 +345,20 @@ pub fn window_update_msg(channel_id: i32, add: u32) -> Message {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn device_name_joins_known_vendor_and_product() {
+        assert_eq!(
+            join_device_name("Logitech, Inc.", "USB Receiver"),
+            "Logitech, Inc. USB Receiver"
+        );
+        assert_eq!(
+            join_device_name("Logitech", "Logitech USB Receiver\n"),
+            "Logitech USB Receiver"
+        );
+        assert_eq!(join_device_name("Netac Co.", "unknown product"), "Netac Co.");
+        assert_eq!(join_device_name("unknown vendor", "unknown product"), "");
+    }
 
     #[test]
     #[cfg(target_endian = "little")]

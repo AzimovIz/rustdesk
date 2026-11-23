@@ -1238,6 +1238,7 @@ impl InvokeUiSession for FlutterHandler {
                             "bus_id": d.bus_id,
                             "vendor": d.vendor,
                             "product": d.product,
+                            "name": d.name,
                             "shared": d.shared,
                             "attached_port": attached_port,
                         })

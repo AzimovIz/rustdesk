@@ -161,11 +161,11 @@ class _UsbipPageState extends State<UsbipPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  device.product.isNotEmpty ? device.product : device.busId,
+                  device.name.isNotEmpty ? device.name : device.busId,
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 Text(
-                  '${device.busId}  ${device.vendor}$status',
+                  '${device.busId}  ${device.vendor}:${device.product}$status',
                   style: TextStyle(fontSize: 12, color: hint),
                 ),
                 if (pending)

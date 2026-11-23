@@ -36,7 +36,7 @@ const USBIP_HOST_DRIVER_DIR: &str = "/sys/bus/usb/drivers/usbip-host";
 // `client/usbip_attach.rs`.
 lazy_static::lazy_static! {
     static ref USB_DEVICE_RE: Option<Regex> =
-        Regex::new(r"busid=([0-9]+-[0-9.]+)#usbid=([0-9a-fA-F]{4}):([0-9a-fA-F]{4})#")
+        Regex::new(r"busid=([0-9]+-[0-9.]+)#usbid=([0-9a-fA-F]{4}):([0-9a-fA-F]{4})#(?:([^#]*)#([^#]*)#)?")
             .map_err(|err| log::error!("usb share: invalid USB_DEVICE_RE: {}", err))
             .ok();
 }
@@ -61,7 +61,11 @@ pub fn list_local_devices() -> Vec<UsbDevice> {
     };
     let shared = shared_bus_ids();
     let stdout = String::from_utf8_lossy(&output.stdout);
-    parse_local_devices(&stdout, &shared)
+    let mut devices = parse_local_devices(&stdout, &shared);
+    for device in &mut devices {
+        device.name = usbip_flow::device_name(&device.bus_id, std::mem::take(&mut device.name));
+    }
+    devices
 }
 
 /// Pure text parsing half of `list_local_devices`, split out for testing
@@ -81,6 +85,10 @@ fn parse_local_devices(stdout: &str, shared: &std::collections::HashSet<String>)
                 vendor: caps[2].to_string(),
                 product: caps[3].to_string(),
                 attached_port: -1,
+                name: usbip_flow::join_device_name(
+                    caps.get(4).map_or("", |m| m.as_str()),
+                    caps.get(5).map_or("", |m| m.as_str()),
+                ),
                 ..Default::default()
             }
         })
@@ -359,6 +367,7 @@ impl Session<FlutterHandler> {
                     "bus_id": d.bus_id,
                     "vendor": d.vendor,
                     "product": d.product,
+                    "name": d.name,
                     "shared": d.shared,
                     "pushed": self.ui_handler.usb.share_owned(&d.bus_id),
                 })
@@ -626,6 +635,7 @@ busid=2-2#usbid=0dd8:3801#Netac Technology Co., Ltd#unknown product#
         assert_eq!(devices[1].bus_id, "2-2");
         assert_eq!(devices[1].vendor, "0dd8");
         assert_eq!(devices[1].product, "3801");
+        assert_eq!(devices[0].name, "Elan Microelectronics Corp.");
     }
 
     #[test]

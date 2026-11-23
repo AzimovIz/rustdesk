@@ -7,6 +7,7 @@ class UsbDeviceInfo {
   final String busId;
   final String vendor;
   final String product;
+  final String name;
   final bool shared;
   // Local devices only: pushed by this session, as opposed to `shared`,
   // which also covers devices shared by the CLI or another session.
@@ -18,6 +19,7 @@ class UsbDeviceInfo {
       : busId = json['bus_id']?.toString() ?? '',
         vendor = json['vendor']?.toString() ?? '',
         product = json['product']?.toString() ?? '',
+        name = json['name']?.toString() ?? '',
         shared = json['shared'] == true,
         pushed = json['pushed'] == true,
         attachedPort =
